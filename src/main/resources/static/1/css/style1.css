@@ -1,0 +1,218 @@
+
+.toggle-password:hover {
+    cursor: pointer;
+}
+.centered-cell {
+    vertical-align: middle;
+    text-align: center;
+}
+.pagination button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.3s;
+}
+
+.pagination button:hover {
+    opacity: 0.7;
+}
+
+.page-numbers {
+    display: inline-block;
+}
+
+.page-numbers button {
+    margin: 0 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.3s;
+}
+
+.page-numbers button:hover {
+    opacity: 0.7;
+}
+
+/* Đặt đúng vị trí của nút Mượn */
+#TvButton {
+    position: absolute;
+    right: 80px;
+    bottom: 10px;
+    background-color: forestgreen;
+    color: white;
+}
+
+#TvButton1 {
+    position: absolute;
+    right: 460px;
+    bottom: 10px;
+    background-color: red;
+    color: white;
+}
+
+#deleteMemberButton {
+    position: absolute;
+    right: 20%;
+    bottom: 10px;
+    background-color: red;
+    color: white;
+}
+
+#TvButton2 {
+    position: absolute;
+    right: 250px;
+    bottom: 10px;
+    background-color: forestgreen;
+    color: white;
+}
+
+#updateTvForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    z-index: 9999; /* Layer lớn hơn so với các phần khác */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+#updateTvFormContent {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#updateTvFormContent .form-group {
+    margin-bottom: 15px;
+}
+
+#updateTvFormContent .form-control {
+    width: 100%;
+}
+
+#updateTvFormContent button[type="submit"] {
+    width: 100%;
+}
+#closeFormButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Tạo viền mờ xung quanh nút */
+}
+
+#closeFormButton:hover {
+    color: #ff0000; /* Màu sắc khi di chuột vào */
+}
+/* CSS cho nút bấm con mắt */
+/* Loại bỏ khung viền xung quanh nút bấm con mắt */
+#togglePassword {
+    border: none; /* Loại bỏ khung viền */
+    background-color: transparent;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+    z-index: 1;
+}
+
+/* CSS cho biểu tượng con mắt */
+#eyeIcon {
+    font-size: 1.25rem;
+}
+
+
+#importExcelButton {
+    margin-left: 10px; /* Điều chỉnh khoảng cách giữa nút và tiêu đề */
+    background-color: #28a745; /* Màu nền */
+    border-color: #28a745; /* Màu viền */
+    color: #fff; /* Màu chữ */
+}
+
+#importExcelButton:hover {
+    background-color: #218838; /* Màu nền khi di chuột qua */
+    border-color: #1e7e34; /* Màu viền khi di chuột qua */
+}
+
+/* Custom styles */
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    float: right;
+}
+
+#addMemberButton{
+    background-color: #28a745;
+}
+.pagination {
+    display: flex;
+    align-items: center; /* Căn chỉnh các phần tử theo chiều ngang */
+}
+
+.pagination button {
+    margin-right: 10px; /* Khoảng cách giữa các nút */
+}
+
+
+/* Điều chỉnh kích thước của các input trong form */
+#updateTvForm input,
+#addTvForm input {
+    width: 100%; /* Tự động điều chỉnh chiều rộng của input để nó fill đầy phần tử cha */
+    margin-bottom: 10px; /* Khoảng cách giữa các input */
+}
+
+/* Điều chỉnh kích thước của nút đóng form */
+.btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+/* Điều chỉnh kích thước của form */
+#addTvForm {
+    max-width: 400px; /* Đặt kích thước tối đa của form */
+    margin: 0 auto; /* Canh giữa form */
+    padding: 20px; /* Tăng khoảng cách giữa các phần tử bên trong form */
+    background-color: #fff; /* Màu nền của form */
+    border-radius: 5px; /* Bo tròn góc của form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho form */
+    position: absolute; /* Đặt vị trí tuyệt đối */
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Dịch chuyển form điều chỉnh để nó nằm chính giữa màn hình */
+    z-index: 9999; /* Đặt z-index cao hơn layout gốc */
+}
+
+/* Điều chỉnh kích thước của các input trong form */
+#updateTvForm input,
+#addTvForm input {
+    width: 100%; /* Tự động điều chỉnh chiều rộng của input để nó fill đầy phần tử cha */
+    margin-bottom: 10px; /* Khoảng cách giữa các input */
+}
+
+/* Điều chỉnh kích thước của nút đóng form */
+.btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}

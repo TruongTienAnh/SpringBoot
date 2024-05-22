@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content   ="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Quản Lý Thiết Bị</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/static/1/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/static/1/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/static/1/css/style5.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="datcho.html">
+                <div class="sidebar-brand-text mx-3">Dashboard</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{user}">
+                    <span>User</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{datcho}">
+                    <span>Trang Đặt Chỗ</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{qlthanhvien}">
+                    <span>Quản Lý Thành Viên</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{qlthietbi}">
+                    <span>Quản Lý Thiết Bị</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{xulyvp}">
+                    <span>Xử Lý Vi Phạm</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{thongke}">
+                    <span>Thống Kê</span></a>
+            </li>
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" id = "seachnametb" placeholder="Nhập tên thành viên..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+<script>
+    $('.form-control.bg-light.border-0.small').on('input', function() {
+        var keyword = $(this).val();
+         // Only send request when at least 3 characters are typed
+            $.ajax({
+                url: '/qlthietbi/search',
+                method: 'GET',
+                data: { keyword: keyword },
+                success: function(response) {
+                    // Clear old data before adding new data
+                    $('#dataTable tbody').empty();
+                    // Iterate through each result and append to the table
+                    response.forEach(function(item) {
+                        var row = '<tr>' +
+                            '<td class="centered-cell"><input type="checkbox"></td>' +
+                            '<td>' + item.maTB + '</td>' +
+                            '<td>' + item.tenTB + '</td>' +
+                            '<td>' + item.moTa + '</td>' +
+                            '</tr>';
+                        $('#dataTable tbody').append(row);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(error); // Handle errors if necessary
+                }
+            });
+
+    });
+</script>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Nhập tên thành viên" aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Content Row -->
+                    <!-- Area Chart -->
+                    <!-- Card Header - Dropdown -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">QUẢN LÝ THIẾT BỊ</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="centered-cell">Chọn</th>
+                                            <th class="centered-cell">Mã Thiết Bị</th>
+                                            <th class="centered-cell">Tên Thiết Bị</th>
+                                            <th class="centered-cell">Mô Tả</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr th:each="thietBi : ${listThietBi}">
+                                            <td class="centered-cell"><input type="checkbox"></td>
+                                            <td th:text="${thietBi.maTB}">Mã TB</td>
+                                            <td th:text="${thietBi.tenTB}">Tên TB</td>
+                                            <td th:text="${thietBi.moTa}">Mô Tả</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="pagination">
+                                <button id="prevPage"><i class="fas fa-chevron-left"></i></button>
+                                <div id="pageNumbers" class="page-numbers"></div>
+                                <button id="nextPage"><i class="fas fa-chevron-right"></i></button>
+                                <button id="TbButton" class="btn btn-success" disabled>Sửa Thông Tin</button>
+                                <button id="addDeviceButton" class="btn btn-primary">Thêm Thiết Bị</button>
+                                <button id="deleteTbButton" class="btn btn-danger" disabled>Xoá Thiết Bị</button>
+                            </div>
+                            <script>
+                                $('#TbButton').click(function() {
+                                    // Find all checkboxes that are checked
+                                    var checkedCheckboxes = $('input[type="checkbox"]:checked');
+
+                                    // Check if any checkboxes are checked
+                                    if (checkedCheckboxes.length > 0) {
+                                        // Get the first checked checkbox's closest parent row
+                                        var selectedRow = checkedCheckboxes.first().closest('tr');
+
+                                        // Extract data from the selected row
+                                        var maTB = selectedRow.find('td:nth-child(2)').text().trim();
+                                        var tenTB = selectedRow.find('td:nth-child(3)').text().trim();
+                                        var moTa = selectedRow.find('td:nth-child(4)').text().trim();
+
+                                        // Populate form fields with extracted data
+                                        $('#maThietBi').val(maTB);
+                                        $('#tenThietBi').val(tenTB);
+                                        $('#moTa').val(moTa);
+
+                                        // Show the form for editing
+                                        $('#upTbButton').show();
+                                    } else {
+                                        // If no checkboxes are checked, display an alert
+                                        alert("Vui lòng chọn ít nhất một thiết bị để sửa thông tin.");
+                                    }
+                                });
+                            </script>
+                            <script>
+                                $('#deleteTbButton').click(function() {
+                                    // Find all checkboxes that are checked
+                                    var checkedCheckboxes = $('input[type="checkbox"]:checked');
+
+                                    // Check if any checkboxes are checked
+                                    if (checkedCheckboxes.length > 0) {
+                                        // Confirm with the user before proceeding
+                                        if (confirm("Bạn có chắc muốn xoá các thiết bị đã chọn?")) {
+                                            // Array to hold the IDs of selected items
+                                            var selectedIds = [];
+
+                                            // Iterate over each checked checkbox and extract the ID
+                                            checkedCheckboxes.each(function() {
+                                                var id = $(this).closest('tr').find('td:nth-child(2)').text().trim(); // Assuming the ID is in the second column
+                                                selectedIds.push(id);
+                                            });
+
+                                            // Send an AJAX request to delete the selected items
+                                            $.ajax({
+                                                url: '/qlthietbi/xoa',
+                                                method: 'POST',
+                                                data: { ids: selectedIds },
+                                                success: function(response) {
+                                                    // Reload the page or update the UI as needed
+                                                    window.location.reload(); // For example, reload the page to reflect the changes
+                                                },
+                                                error: function(xhr, status, error) {
+                                                    console.error(error); // Handle errors if necessary
+                                                }
+                                            });
+                                        }
+                                    } else {
+                                        // If no checkboxes are checked, display an alert
+                                        alert("Vui lòng chọn ít nhất một thiết bị để xoá.");
+                                    }
+                                });
+                            </script>
+                            <div id="upTbButton" style="display: none;">
+                                <button id="closeFormButton" class="btn-close">X</button>
+                                <form id="upTbButtonContent" th:action="@{/qlthietbi/capnhat}" method="post">
+                                    <div class="form-group">
+                                        <label for="maThietBi">Mã Thiết Bị:</label>
+                                        <input type="text" class="form-control" id="maThietBi" name="maTB" placeholder="Nhập mã thiết bị" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tenThietBi">Tên Thiết Bị</label>
+                                        <input type="text" class="form-control" id="tenThietBi" name="tenTB" placeholder="Nhập tên thiết bị">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="moTa">Mô Tả</label>
+                                        <input type="text" class="form-control" id="moTa" name="moTa" placeholder="Nhập mô tả thiết bị">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                </form>
+                            </div>
+
+                            <div id="addTbButtonContent">
+                                <button id="closeAddFormButton" class="btn-close">X</button>
+                                <form id="addTbFormm"  th:action="@{/qlthietbi/add}" method="post" >
+                                    <div class="form-group">
+                                        <label for="tmaThietBi">Mã Thiết Bị:</label>
+                                        <input type="text" class="form-control" id="tmaThietBi"  name="maTB" placeholder="Nhập mã thiết bị">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ttenThietBi">Tên Thiết Bị</label>
+                                        <input type="text" class="form-control" id="ttenThietBi" name="tenTB" placeholder="Nhập tên thiết bị">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="moTa">Mô Tả</label>
+                                        <input type="text" class="form-control" id="tmoTa"  name="moTa"placeholder="Nhập mô tả thiết bị">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>                                                                                                <!-- /.container-fluid -->
+            </div>
+
+
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/static/1/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/1/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/static/1/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/static/1/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/static/1/vendor/chart.js/Chart.min.js"></script>
+    <script src="/static/1/js/scripts2.js"></script>
+
+
+    <!-- Page level custom scripts -->
+    <script src="/static/1/js/demo/chart-area-demo.js"></script>
+    <script src="/static/1/js/demo/chart-pie-demo.js"></script>
+
+</body>
+
+</html>

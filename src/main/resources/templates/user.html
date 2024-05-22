@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/1/css/style2.css">
+    <link rel="stylesheet" href="/static/1/css/style.css">
+    <link rel="stylesheet" href="/static/1/css/bootstrap.min.css">
+    <script src="/static/1/js/jquery-3.7.1.min.js"></script>
+    <script src="/static/1/js/bootstrap.min.js"></script>
+    <script src="/static/1/js/script.js"></script>
+    <title>User Information</title>
+    <!-- Link CSS stylesheets here if needed -->
+    <style>
+        /* Add your custom CSS styles here */
+        body,html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding-right: 0;
+            margin-right: 0;
+            padding-left: 0 ;
+            margin-left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            height: 100%;
+        }
+        .sidebar-container {
+            flex: 0 0 auto;
+            width: 250px; /* Đặt chiều rộng cố định cho menu */
+        }
+        .user-info {
+            flex: 2;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .btn-container {
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin-right: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .content-container {
+            flex: 1; /* Phần còn lại của layout sẽ mở rộng để lấp đầy không gian trống */
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        #changePasswordForm {
+            display: none;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* CSS cho nút đóng bảng */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body id="page-top">
+<div id="wrapper">
+
+
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="datcho.html">
+                <div class="sidebar-brand-text mx-3">Dashboard</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{datcho}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Trang đặt chỗ</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{user}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>User</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{qlthanhvien}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Admin</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+        </ul>
+
+
+<!-- HTML -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+
+
+
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+
+        <form
+                class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+
+        </form>
+
+        <!-- Topbar Navbar -->
+        <ul class="navbar-nav ml-auto ">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                     aria-labelledby="searchDropdown">
+                    <form class="form-inline mr-auto w-100 navbar-search">
+                        <div class="input-group">
+
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+
+
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="http://localhost:8084/login" id="userDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Đăng xuất</span>
+                    <img class="img-profile rounded-circle"
+                         src="/static/1/images/hinh2.jpg">
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                     aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Profile
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Settings
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Activity Log
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        Logout
+                    </a>
+                </div>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <div class="container-fluid">
+    <div class="  user-info">
+        <h2>User Information</h2>
+        <div class="user-info">
+            <label for="memberID">Mã thành viên:</label>
+            <p id="memberID" th:text="${thanhVien.maTV}">Mã thành viên từ cơ sở dữ liệu</p>
+        </div>
+        <div class="user-info">
+            <label for="fullName">Họ và Tên:</label>
+            <p id="fullName" th:text="${thanhVien.hoTen}">Họ và tên từ cơ sở dữ liệu</p>
+        </div>
+        <div class="user-info">
+            <label for="major">Tên Ngành:</label>
+            <p id="major" th:text="${thanhVien.nganh}">Tên ngành từ cơ sở dữ liệu</p>
+        </div>
+        <div class="user-info">
+            <label for="faculty">Tên Khoa:</label>
+            <p id="faculty" th:text="${thanhVien.khoa}">Tên khoa từ cơ sở dữ liệu</p>
+        </div>
+        <div class="user-info">
+            <label for="phoneNumber">Số Điện Thoại:</label>
+            <p id="phoneNumber" th:text="${thanhVien.sdt}">Số điện thoại từ cơ sở dữ liệu</p>
+        </div>
+        <div class="user-info">
+            <label for="email">Email:</label>
+            <p id="email" th:text="${thanhVien.email}">Email từ cơ sở dữ liệu</p>
+        </div>
+        <div class="btn-container">
+            <button class="btn" onclick="showChangePasswordModal()">Đổi mật khẩu</button>
+            <button class="btn" onclick="showViolationStatus()">Xem trạng thái vi phạm</button>
+            <button class="btn" onclick="showBorrowedDevicesTable()">Xem hồ sơ mượn thiết bị</button>
+
+            <div id="changePasswordModal" class="modal">
+                <form action="/changePassword" method="post" id="changePassword">
+                    <div class="modal-content">
+                        <!-- Nội dung của bảng đổi mật khẩu -->
+                        <span class="close" onclick="closeChangePasswordModal()">&times;</span>
+                        <h2>Đổi mật khẩu</h2>
+                        <!-- Các trường nhập mới mật khẩu và xác nhận mật khẩu -->
+                        <input type="password" id="newPassword" name="newPassword" placeholder="Mật khẩu mới"><br>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Xác nhận mật khẩu"><br>
+                        <!-- Nút lưu hoặc đổi mật khẩu -->
+                        <button id="savePasswordBtn">Lưu mật khẩu</button>
+                    </div>
+                </form>
+                <!-- jQuery -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                <!-- Script xử lý đổi mật khẩu -->
+                <script>
+                    $(document).ready(function() {
+                        $("#savePasswordBtn").click(function() {
+                            var newPassword = $("#newPassword").val();
+                            var confirmPassword = $("#confirmPassword").val();
+
+                            // Gửi yêu cầu đổi mật khẩu bằng ajax
+                            $.ajax({
+                                type: "POST",
+                                url: "/changePassword",
+                                data: {
+                                    newPassword: newPassword,
+                                    confirmPassword: confirmPassword
+                                },
+                                success: function(response) {
+                                    if (response.success) {
+                                        window.location.href = "/user";
+                                    } else {
+                                        alert(response.message);
+                                    }
+                                },
+                                error: function(xhr, status, error) {
+                                    alert("Đã xảy ra lỗi: " + error);
+                                }
+                            });
+                        });
+                    });
+                </script>
+
+            </div>
+            <div id="violationStatusTable" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close" onclick="closeViolationTable()">&times;</span>
+                    <h2>Xử lý vi phạm</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Mã xử lý</th>
+                            <th>Hình thức xử lý</th>
+                            <th>Số tiền</th>
+                            <th>Ngày xử lý</th>
+                        </tr>
+                        </thead>
+                        <tbody id="violationStatusTableBody">
+                        <tr th:each="ttxuly : ${TTXulys}">
+                            <td class="centered-cell1" th:text="${ttxuly.getMaXL()}"></td>
+                            <td class="centered-cell1" th:text="${ttxuly.getHinhThucXL()}"></td>
+                            <td class="centered-cell1" th:text="${ttxuly.getSoTien()}"></td>
+                            <td class="centered-cell1" th:text="${ttxuly.getNgayXL()}"></td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="borrowedDevicesModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeBorrowedDevicesTable()">&times;</span>
+                    <h2>Hồ sơ mượn thiết bị</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Mã thông tin sử dụng</th>
+                            <th>Tên thiết bị</th>
+                            <th>Ngày đặt</th>
+                            <th>Ngày mượn</th>
+                            <th>Ngày trả</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        </thead>
+                        <tbody id="borrowedDevicesTableBody">
+                            <tr th:each="ttsd : ${ttsds}">
+                                <td class="centered-cell1" th:text="${ttsd.maTT}"></td>
+                                <td class="centered-cell1" th:text="${ttsd.thietBi.getTenTB()}">
+                                <td class="centered-cell1" th:text="${ttsd.tgDatCho}"></td>
+                                <td class="centered-cell1" th:text="${ttsd.tgMuon}"></td>
+                                <td class="centered-cell1" th:text="${ttsd.tgTra}"></td>
+                                <td class="centered-cell1" th:text="${ttsd.tgVao}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>

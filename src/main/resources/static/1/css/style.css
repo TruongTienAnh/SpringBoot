@@ -1,0 +1,94 @@
+.centered-cell {
+    vertical-align: middle;
+    text-align: center;
+}
+.pagination button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.3s;
+}
+
+.pagination button:hover {
+    opacity: 0.7;
+}
+
+.page-numbers {
+    display: inline-block;
+}
+
+.page-numbers button {
+    margin: 0 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.3s;
+}
+
+.page-numbers button:hover {
+    opacity: 0.7;
+}
+
+/* Đặt đúng vị trí của nút Mượn */
+#muonButton {
+    position: absolute;
+    right: 150px;
+    bottom: 10px;
+    background-color: forestgreen;
+    color: white;
+}
+
+#muonForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    z-index: 9999; /* Layer lớn hơn so với các phần khác */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+#muonFormContent {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#muonFormContent .form-group {
+    margin-bottom: 15px;
+}
+
+#muonFormContent .form-control {
+    width: 100%;
+}
+
+#muonFormContent button[type="submit"] {
+    width: 100%;
+}
+#closeFormButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Tạo viền mờ xung quanh nút */
+}
+
+#closeFormButton:hover {
+    color: #ff0000; /* Màu sắc khi di chuột vào */
+}

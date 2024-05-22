@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/1/css/bootstrap.min.css">
+    <script src="/static/1/js/jquery-3.7.1.min.js"></script>
+    <script src="/static/1/js/bootstrap.min.js"></script>
+    <script>
+        function validateForm() {
+            let user = document.forms["register"]["user"].value;
+            let name = document.forms["register"]["name"].value;
+            let nganh = document.forms["register"]["nganh"].value;
+            let khoa = document.forms["register"]["khoa"].value;
+            let sdt = document.forms["register"]["sdt"].value;
+            let email = document.forms["register"]["email"].value;
+            let password = document.forms["register"]["password"].value;
+
+            // Kiểm tra Mã Thành Viên
+            if (user == "" || isNaN(user)) {
+                alert("Mã Thành Viên phải là số và không được để trống");
+                return false;
+            }
+
+            // Kiểm tra Họ và tên
+            if (name == "" || !/^[a-zA-Z\s]+$/.test(name)) {
+                alert("Họ và tên chỉ được chứa ký tự chữ và không được để trống");
+                return false;
+            }
+
+            // Kiểm tra Tên Nghành
+            if (nganh == "" || !/^[a-zA-Z\s]+$/.test(nganh)) {
+                alert("Tên Nghành chỉ được chứa ký tự chữ và không được để trống");
+                return false;
+            }
+
+            // Kiểm tra Tên Khoa
+            if (khoa == "" || !/^[a-zA-Z\s]+$/.test(khoa)) {
+                alert("Tên Khoa chỉ được chứa ký tự chữ và không được để trống");
+                return false;
+            }
+
+            // Kiểm tra SDT
+            if (sdt == "" || !/^\d{10}$/.test(sdt)) {
+                alert("SDT phải là số và có đúng 10 chữ số");
+                return false;
+            }
+
+            // Kiểm tra Địa chỉ email
+            if (email == "" || !/\S+@\S+\.\S+/.test(email)) {
+                alert("Địa chỉ email không hợp lệ");
+                return false;
+            }
+
+            // Kiểm tra Mật khẩu
+            if (password == "") {
+                alert("Mật khẩu không được để trống");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+<div style="background: #4e73df;">
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="row border rounded-4 p-4 bg-white shadow box-area">
+        <div class="col-md-5 rounded-3 d-flex justify-content-center align-items-center flex-column left-box" style="background: #4e73df;">
+            <div class="featured-image mb-3">
+                <img src="/static/1/images/hinh2.jpg" class="img-fluid" style="width: 300px;">
+            </div>
+        </div>
+        <div class="col-md-7 right-box">
+            <form action="/register" method="POST" id="register" onsubmit="return validateForm()" >
+                <div class="row align-items-center">
+                    <div class="header-text mb-4 text-center">
+                        <h2>ĐĂNG KÝ</h2>
+                    </div>
+                    <div class="form-group mb-3">
+                        <input name="user" type="text" class="form-control form-control-lg bg-light fs-6"  placeholder="Mã Thành Viên">
+
+                    </div>
+                    <div class="form-group mb-3">
+                        <input name="name" type="text" class="form-control form-control-lg bg-light fs-6"  placeholder="Họ và tên">
+
+                    </div>
+                    <div class="form-group mb-3">
+                        <input name="nganh" type="text" class="form-control form-control-lg bg-light fs-6"  placeholder="Tên Nghành">
+
+                    </div>
+                    <div class="form-group mb-3">
+                        <input name="khoa" type="text" class="form-control form-control-lg bg-light fs-6"  placeholder="Tên Khoa">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input name="sdt" type="text" class="form-control form-control-lg bg-light fs-6"  placeholder="SDT">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input name="email" type="text" class="form-control form-control-lg bg-light fs-6"  placeholder="Địa chỉ email">
+                    </div>
+                    <div class="form-group mb-3">
+                        <input type="password" class="form-control form-control-lg bg-light fs-6"  id="password" name="password" placeholder="Mật khẩu">
+                    </div>
+                    <div class="form-group mb-3">
+                        <button type="submit" id="submitBtn" class="btn btn-lg btn-primary w-100 fs-6">Đăng Ký</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

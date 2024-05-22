@@ -1,0 +1,185 @@
+.centered-cell {
+    vertical-align: middle;
+    text-align: center;
+}
+.pagination button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.3s;
+}
+
+.pagination button:hover {
+    opacity: 0.7;
+}
+
+.page-numbers {
+    display: inline-block;
+}
+
+.page-numbers button {
+    margin: 0 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.3s;
+}
+
+.page-numbers button:hover {
+    opacity: 0.7;
+}
+
+/* Đặt đúng vị trí của nút Mượn */
+#TbButton {
+    position: absolute;
+    right: 150px;
+    bottom: 10px;
+    background-color: forestgreen;
+    color: white;
+}
+
+#upTbButton {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    z-index: 9999; /* Layer lớn hơn so với các phần khác */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+#upTbButtonContent {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#upTbButtonContent .form-group {
+    margin-bottom: 15px;
+}
+
+#upTbButtonContent .form-control {
+    width: 100%;
+}
+
+#upTbButtonContent button[type="submit"] {
+    width: 100%;
+}
+#closeFormButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Tạo viền mờ xung quanh nút */
+}
+
+#closeFormButton:hover {
+    color: #ff0000; /* Màu sắc khi di chuột vào */
+}
+#addDeviceButton {
+    /* CSS cho nút thêm thiết bị */
+    position: absolute;
+    right: 50px; /* Điều chỉnh vị trí của nút */
+    bottom: 10px; /* Điều chỉnh vị trí của nút */
+    background-color: #28a745; /* Màu nền */
+    color: #fff; /* Màu chữ */
+    border: none;
+    padding: 10px 20px; /* Điều chỉnh kích thước của nút */
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 270px;
+
+}
+
+#addDeviceButton:hover {
+    opacity: 0.7; /* Hiệu ứng khi di chuột vào */
+}
+
+
+#addTbButtonContent {
+    /* CSS cho form thêm thiết bị */
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    z-index: 9999;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+#addTbButtonContent .form-group {
+    margin-bottom: 15px;
+}
+
+#addTbButtonContent .form-control {
+    width: 100%;
+}
+
+#addTbButtonContent button[type="submit"] {
+    width: 100%;
+}
+
+#closeAddFormButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#closeAddFormButton:hover {
+    color: #ff0000;
+}
+
+#addDeviceButton,
+#deleteTbButton,
+#TbButton {
+    height: 50px; /* Đặt chiều cao của nút */
+}
+
+#deleteTbButton:not([disabled]) {
+    background-color: #dc3545; /* Màu nền khi nút không trong trạng thái vô hiệu hóa */
+    color: #fff; /* Màu chữ khi nút không trong trạng thái vô hiệu hóa */
+}
+
+#deleteTbButton {
+    /* CSS cho nút thêm thiết bị */
+    position: absolute;
+    right: 50px; /* Điều chỉnh vị trí của nút */
+    bottom: 10px; /* Điều chỉnh vị trí của nút */
+    border: none;
+    padding: 10px 20px; /* Điều chỉnh kích thước của nút */
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 450px;
+
+}
+
+#deleteTbButton:hover {
+    opacity: 0.7; /* Hiệu ứng khi di chuột vào */
+}
+

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content   ="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Xử Lý Vi Phạm</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/static/1/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="/static/1/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/static/1/css/style3.css" rel="stylesheet">
+</head>
+
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="datcho.html">
+                <div class="sidebar-brand-text mx-3">Dashboard</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{user}">
+                    <span>User</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{datcho}">
+                    <span>Trang Đặt Chỗ</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{qlthanhvien}">
+                    <span>Quản Lý Thành Viên</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{quanlytb}">
+                    <span>Quản Lý Thiết Bị</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{xulyvp}">
+                    <span>Xử Lý Vi Phạm</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#" th:href="@{thongke}">
+                    <span>Thống Kê</span></a>
+            </li>
+
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" id="searchData" placeholder="Nhập mã thành viên..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" id = "searchVP" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Nhập tên thành viên" aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Content Row -->
+                    <!-- Area Chart -->
+                    <!-- Card Header - Dropdown -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">XỬ LÝ VI PHẠM</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="centered-cell">Chọn</th>
+                                            <th class="centered-cell">STT</th>
+                                            <th class="centered-cell">Mã Xử Lý</th>
+                                            <th class="centered-cell">Mã Thành Viên</th>
+                                            <th class="centered-cell">Hình Thức Xử Lý</th>
+                                            <th class="centered-cell">Số Tiền</th>
+                                            <th class="centered-cell">Ngày Xử Lý</th>
+                                            <th class="centered-cell">Trạng Thái Xử Lý</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="xulyList">
+
+                                    <tr th:each ="row, state: ${xulyList}" th:switch = "${row.TrangThaiXL}" >
+                                        <td class="centered-cell"><input type="checkbox"></td>
+                                        <td class="centered-cell" th:utext = "${state.count}"></td>
+                                        <td class="centered-cell" th:utext="${row.MaXL}"></td>
+                                        <td class="centered-cell" th:utext="${row.MaTV}"></td>
+                                        <td class="centered-cell" th:utext="${row.HinhThucXL}"></td>
+                                        <td class="centered-cell" th:utext="${row.SoTien}"></td>
+                                        <td class="centered-cell" th:utext="${row.NgayXL}"></td>
+                                        <td class="centered-cell" th:case="0" style="color:red"><strong>Chưa xử lý</strong></td>
+                                        <td class="centered-cell" th:case="1" style="color:green"><strong>Đã xử lý</strong></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="pagination">
+                                <button id="prevPage"><i class="fas fa-chevron-left"></i></button>
+                                <div id="pageNumbers" class="page-numbers"></div>
+                                <button id="nextPage"><i class="fas fa-chevron-right"></i></button>
+                                <button id="TbButton" class="btn btn-success" disabled>Sửa Thông Tin</button>
+                                <button id="addViolationButton" class="btn btn-primary mr-2">Thêm Vi Phạm</button>
+                            </div>
+                            <div id="upTbButton" style="display: none;">
+                                <button id="closeFormButton" class="btn-close">X</button>
+                                <form id="upTbButtonContent">
+                                    <div class="form-group">
+                                        <label for="maXL">Mã Xử Lý</label>
+                                        <input type="text" class="form-control" id="maXL" placeholder="Nhập mã xử lý" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="maTV">Mã Thành Viên</label>
+                                        <input type="text" class="form-control" id="maTV" placeholder="Nhập mã thành viên">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="hinhThucxl">Hình Thức Xử Lý</label>
+                                        <input type="text" class="form-control" id="hinhThucxl" placeholder="Nhập hình thức xử lý ">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="soTienPhat">Số Tiền (Nếu Có)</label>
+                                        <input type="text" class="form-control" id="soTienPhat" placeholder="Nhập số tiền phạt">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ngayXuLyvp">Ngày Xử Lý</label>
+                                        <input type="datetime-local" class="form-control" id="ngayXuLyvp" placeholder="Nhập ngày xử lý">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tinhTrangxl">Tình Trạng</label>
+                                        <select class="form-control" id="tinhTrangxl">
+                                            <option value="hong">Hoàn Thành Xử Lý</option>
+                                            <option value="sanSang">Đang Xử Ly</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" id="updateBtn" class="btn btn-primary">Lưu</button>
+                                </form>
+                                
+                            </div>
+                            <div id="addViolationForm" style="display: none;">
+                                <button id="closeAddViolationFormButton" class="btn-close">X</button>
+                                <form id="addViolationFormContent">
+                                    <div class="form-group">
+                                        <label for="maXuLy">Mã Xử Lý</label>
+                                        <input type="text" class="form-control" id="maXuLy" placeholder="Nhập mã xử lý">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="maThanhVien">Mã Thành Viên</label>
+                                        <input type="text" class="form-control" id="maThanhVien" placeholder="Nhập mã thành viên">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="hinhThuc">Hình Thức Xử Lý</label>
+                                        <input type="text" class="form-control" id="hinhThuc" placeholder="Nhập hình thức xử lý">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="soTien">Số Tiền (Nếu Có)</label>
+                                        <input type="text" class="form-control" id="soTien" placeholder="Nhập số tiền">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ngayXuLy">Ngày Xử Lý</label>
+                                        <input type="datetime-local" class="form-control" id="ngayXuLy" placeholder="Nhập ngày xử lý">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tinhTrang">Trạng Thái Xử Lý</label>
+                                        <select class="form-control" id="tinhTrang">
+                                            <option value="hoanThanh">Hoàn Thành</option>
+                                            <option value="dangXuLy">Đang Xử Lý</option>
+                                        </select>
+                                    </div>
+                                    <!-- Thay nút "Lưu" thành nút "Thêm" -->
+                                    <button type="button" id="addBtn" class="btn btn-primary">Thêm</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>                                                                                                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("addBtn").addEventListener("click", () => {
+            let maXL = document.querySelector("#maXuLy").value;
+            let maTV = document.querySelector("#maThanhVien").value;
+            let hinhThuc = document.querySelector("#hinhThuc").value;
+            let tien = document.querySelector("#soTien").value;
+            let date = document.querySelector("#ngayXuLy").value;
+            let status = document.querySelector("#tinhTrang").value;
+
+            let viPham = {
+                maXL: maXL,
+                maTV: maTV,
+                hinhThuc: hinhThuc,
+                tien: tien,
+                date: date,
+                status: status,
+            };
+            console.log(viPham);
+            fetch("/themvp", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(viPham),
+            })
+
+            .then((res) => res.json())
+            .then((data) => {
+                alert(data.message);
+                if (data.success) {
+                    window.location.reload();
+                }
+            })
+            .catch((error) => {
+                console.log("error: " + error);
+            });
+        });
+    </script>
+    <script>
+        document.getElementById("updateBtn").addEventListener("click", () => {
+            let maXL = document.querySelector("#maXL").value;
+            let maTV = document.querySelector("#maTV").value;
+            let hinhThuc = document.querySelector("#hinhThucxl").value;
+            let tien = document.querySelector("#soTienPhat").value;
+            let date = document.querySelector("#ngayXuLyvp").value;
+            let status = document.querySelector("#tinhTrangxl").value;
+
+            let viPham = {
+                maXL: maXL,
+                maTV: maTV,
+                hinhThuc: hinhThuc,
+                tien: tien,
+                date: date,
+                status: status,
+            };
+            console.log(viPham);
+            fetch("/suavp", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(viPham),
+            })
+
+            .then((res) => res.json())
+            .then((data) => {
+                alert(data.message);
+                if (data.success) {
+                    window.location.reload();
+                }
+            })
+            .catch((error) => {
+                console.log("error: " + error);
+            });
+        });
+    </script>
+    <script>
+        var searchInput = document.getElementById("searchData");
+        document.getElementById("searchVP").addEventListener("click", function(event) {
+        event.preventDefault(); // Prevent the default behavior
+        var searchValue = searchInput.value.trim();
+        var searchData = {
+            searchValue: searchValue,
+        };
+        document.getElementById("xulyList").innerHTML = ""
+        fetch("/searchVP", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(searchData),
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        document.getElementById("xulyList").innerHTML = ""; // Clear previous results
+        var count = 1;
+        data.forEach(function(xuly) {
+          var tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td class="centered-cell"><input type="checkbox"></td>
+            <td class="centered-cell">`+count+`</td>
+            <td class="centered-cell">${xuly.maXL}</td>
+            <td class="centered-cell">${xuly.maTV}</td>
+            <td class="centered-cell">${xuly.hinhThucXL}</td>
+            <td class="centered-cell">${xuly.soTien}</td>
+            <td class="centered-cell">${xuly.ngayXL}</td>`;
+            if(xuly.trangThaiXL == 0)
+                tr.innerHTML +=`<td class="centered-cell" style="color:red"><strong>Chưa xử lý</strong></td>`;
+            else tr.innerHTML +=`<td class="centered-cell" style="color:green"><strong>Đã xử lý</strong></td>`;
+          document.getElementById("xulyList").appendChild(tr);
+          count += 1;
+        });
+      })
+      .catch((error) => {
+        console.log("error: " + error);
+      });
+    });
+    function searchReload(){
+        document.getElementById('TbButton').addEventListener('click', function () {
+    // Lấy ra checkbox đã chọn
+    const selectedCheckbox = document.querySelector('#dataTable tbody tr input[type="checkbox"]:checked');
+    if (selectedCheckbox) {
+        // Lấy ra hàng chứa checkbox đã chọn
+        const selectedRow = selectedCheckbox.closest('tr');
+
+        // Lấy ra các ô dữ liệu trong hàng đã chọn
+        const cells = selectedRow.querySelectorAll('td');
+
+        // Lấy ra các giá trị từ các ô dữ liệu
+        const maXuLy = cells[2].textContent;
+        const maThanhVien = cells[3].textContent;
+        const hinhThuc = cells[4].textContent;
+        const soTien = cells[5].textContent;
+        const ngayXuLy = cells[6].textContent;
+        let tinhTrang = cells[7].textContent;
+
+        // Xác định tình trạng hiện tại của thiết bị
+        if (tinhTrang === "Hỏng") {
+            tinhTrang = "hong";
+        } else if (tinhTrang === "Sẵn Sàng") {
+            tinhTrang = "sanSang";
+        }
+
+        // Điền các giá trị vào các trường trong form chỉnh sửa
+        document.getElementById('maXL').value = maXuLy;
+        document.getElementById('maTV').value = maThanhVien;
+        document.getElementById('hinhThucxl').value = hinhThuc;
+        document.getElementById('soTienPhat').value = soTien;
+        document.getElementById('ngayXuLyvp').value = ngayXuLy;
+        document.getElementById('tinhTrang').value = tinhTrang;
+
+        // Hiển thị form chỉnh sửa
+        document.getElementById('updateTvForm').style.display = 'block';
+    } else {
+        // Hiển thị thông báo nếu không có thành viên nào được chọn
+        alert('Vui lòng chọn một thành viên để sửa.');
+    }
+});
+    }
+    </script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/static/1/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/1/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/static/1/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/static/1/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/static/1/vendor/chart.js/Chart.min.js"></script>
+    <script src="/static/1/js/scripts3.js"></script>
+
+
+    <!-- Page level custom scripts -->
+    <script src="/static/1/js/demo/chart-area-demo.js"></script>
+    <script src="/static/1/js/demo/chart-pie-demo.js"></script>
+
+</body>
+
+</html>
